@@ -1,0 +1,56 @@
+/* Search */
+
+.search-post,
+.search-form,
+.search-form h1 {
+  padding-bottom: 1.2rem;
+}
+
+.search-form form {
+  width: 100%;
+  position: relative;
+}
+
+.search-form input {
+  width: 100%;
+  background: rgba(255,255,255,0);
+  border-radius: 0;
+  border: 0;
+  border-bottom: 2px solid rgba(255,255,255,.5);
+  display: block;
+  width: 100%;
+  padding: .5rem .5rem .5rem 2rem;
+  color: #fff;
+  font-size: 1rem;
+  transition: all .2s ease-out,color .2s ease-out;
+}
+
+.search-form input:focus {
+  border-bottom: 2px solid rgba(255,255,255,1);
+  outline: none;
+}
+
+.search-form input::placeholder {
+  color: #fff;
+}
+
+.btn-search {
+  width: 2rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(255,255,255,0);
+  border: 0;
+  padding: 0;
+}
+
+.btn-search svg {
+  fill: rgba(255,255,255,1);
+  width: 1.5rem;
+  height: 1.5rem; 
+}

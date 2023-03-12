@@ -1,0 +1,19 @@
+<!-- preload fonts -->
+<link rel='preload' href='/fonts/AbrilFatface/abril-fatface-v12-latin-ext_latin-regular.woff2' crossorigin='anonymous' as='font' type='font/woff2'>
+<link rel='preload' href='/fonts/PTSans/pt-sans-v12-latin-ext_latin-regular.woff2' crossorigin='anonymous' as='font' type='font/woff2'>
+<link rel='preload' href='/fonts/PTSans/pt-sans-v12-latin-ext_latin-700.woff2' crossorigin='anonymous' as='font' type='font/woff2'>
+<!-- insert css files -->
+{{- $CSSfonts := resources.Get "css/fonts.css" }}
+{{- $CSSpoole := resources.Get "css/poole.css" }}
+{{- $CSShyde := resources.Get "css/hyde.css" }}
+{{- $CSSsyntax := resources.Get "css/syntax.css" }}
+{{- $CSSsearch := resources.Get "css/search.css" }}
+{{- $CSS := slice $CSSfonts $CSSpoole $CSShyde $CSSsyntax $CSSsearch| resources.Concat "main.css" }}
+{{- $CSS := $CSS | toCSS (dict "outputCSS" "compressed") | resources.Minify | resources.Fingerprint "sha512" -}}
+<link rel="stylesheet" href="{{ $CSS.Permalink }}">
+{{- $CSSprint := resources.Get "css/print.css" | toCSS (dict "outputCSS" "compressed") | resources.Minify | resources.Fingerprint "sha512" -}}
+<link rel="stylesheet" href="{{ $CSSprint.Permalink }}" media="print">
+<!-- rss feed -->
+{{- with .OutputFormats.Get "rss" -}}
+{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
