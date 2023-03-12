@@ -1,3 +1,5 @@
+This theme was forked from [spf13/hyde](https://github.com/spf13/hyde).
+
 # Hyde
 
 Hyde is a brazen two-column [hugo](https://gohugo.io) theme based on the [Jekyll](http://jekyllrb.com) theme of the same name.
