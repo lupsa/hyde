@@ -1,21 +1,40 @@
+<script>
+  function myFunction() {
+     var element = document.getElementById("menu-toggle");
+     element.classList.toggle("menu-active");
+  }
+</script>
 <aside class="sidebar">
-  <div class="container sidebar-sticky">
+  <div class="container">
     <div class="sidebar-about">
       <a href="{{ .Site.BaseURL }}"><h1>{{ .Site.Title }}</h1></a>
       <p class="lead">
-      {{ with .Site.Params.description }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
+        {{ with .Site.Params.description }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
       </p>
+      <a href="javascript:void(0);" class="menu-icon" onclick="myFunction()"></a>
     </div>
+    <div class="mobile-menu menu-active" id="menu-toggle">
+      <div class="search-form">
+        <form action="{{ "search/" | absURL }}">
+          <input id="search-query" name="s" placeholder="{{ i18n "search_placeholder"}}">
+          <label for="search-query" class="btn-search" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+            </svg>
+          </label>
+        </form>
+      </div>
 
-    <nav>
-      <ul class="sidebar-nav">
-        <li><a href="{{ .Site.BaseURL }}">Home</a> </li>
-        {{ range .Site.Menus.main -}}
-          <li><a href="{{.URL}}"> {{ .Name }} </a></li>
-        {{- end }}
-      </ul>
-    </nav>
+      <nav>
+        <ul class="sidebar-nav">
+          {{ range .Site.Menus.main -}}
+            <li><a class="sidebar-nav-item" href="{{.URL}}"> {{ .Name }} </a></li>
+          {{- end }}
+        </ul>
+      </nav>
 
-    <p>{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}</p>
+      <p class="sidebar-copyright">{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. {{ i18n "rights_notice"}}. {{end}}</p>
+
+    </div>
   </div>
 </aside>

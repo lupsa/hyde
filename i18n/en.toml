@@ -1,0 +1,21 @@
+# layouts/partials/related.html
+[related_posts_title]
+  other = "Related posts"
+
+# layouts/partials/sidebar.html
+[rights_notice]
+  other = "All rights reserved"
+
+# layouts/404.html
+[404_title]
+  other = "404: Page not found"
+[404_content]
+  other = "Sorry, we’ve misplaced that URL or it’s pointing to something that doesn’t exist. [Head back home](/) to try finding it again."
+
+# layouts/_default/search.html
+[search_placeholder]
+  other = "Search..."
+
+# assets/js/search.js
+[search_empty]
+  other = "No matches found"

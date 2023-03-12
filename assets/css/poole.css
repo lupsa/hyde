@@ -48,8 +48,6 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
   line-height: 1.5;
 }
 @media (min-width: 38em) {
@@ -169,6 +167,10 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   background-color: #f9f9f9;
+  border: 1px solid #e8e8e8;
+}
+pre:focus {
+  outline: none;
 }
 pre code {
   padding: 0;
@@ -233,7 +235,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {
-  font-size: 1.25rem;
+  font-size: .85rem;
   font-weight: 300;
 }
 

@@ -1,9 +1,36 @@
-{{ define "main" -}}
-<ul class="posts">
-{{ range .Data.Pages -}}
-  <li>
-    <span><a href="{{ .Permalink }}">{{ .Title }}</a> <time class="pull-right post-list" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, Jan 2, 2006" }}</time></span>
-  </li>
-{{- end }}
-</ul>
-{{- end }}
+{{ define "main" }}
+  {{ $type := .Type }}
+  {{ $.Scratch.Set "count" 1 }}
+    {{ range (.Site.RegularPages.GroupByDate "2006") }}
+      {{ if and (gt .Key 1) (gt (where .Pages "Type" $type) 0) }}
+        {{ range (where .Pages "Type" $type) }}
+          {{ if (eq ($.Scratch.Get "count") 1) }}
+            {{ $.Scratch.Set "count" 0 }}
+            <h2>{{ .Date.Format "2006" }}</h2>
+          {{ end }}
+        {{ end }}
+        {{ $.Scratch.Set "count" 1 }}
+          <ul>
+          {{ range (where .Pages "Type" $type) }}
+            {{ if (ne .Params.hidden true) }}
+              <li>
+                  <span>{{ .Date | time.Format ":date_medium" }}</span> — <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </li>
+            {{ end }}
+          {{ end }}
+          </ul>
+
+    {{ end }}
+  {{ end }}
+
+  {{ if eq .Kind "term"}}
+    <h2>#{{ .Title}}</h2>
+    <ul>
+      {{ range .Pages}}
+          <li>
+            <span>{{ .Date | time.Format ":date_medium" }}</span> — <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+      {{ end}}
+    </ul>
+  {{ end}}
+{{ end }}
